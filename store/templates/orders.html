@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load cart %}
+{% load custom_filter %}
+<div class="container">
+    <div class="broder rounded p-4 f-4">
+        <p class="display-4 pl-4 ml-4"> Your Orders</p>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sno</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for order in orders%}
+                    <td>{{forloop.counter}}</td>
+                    <td><img style="height:80px" class="rounded-circle" src="{{order.product.image.url}}" alt=""></td>
+                    <td> {{order.product.name}}</td>
+                    <td>{{order.date}}</td>
+                    <td>{{order.price|currency}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.quantity|multiply:order.price|currency}}</td>
+                    {%if order.status %}
+                    <td><small class="badge badge-success">completed</small></td>
+                    {%else%}
+                    <td><small class="badge badge-warning">panding</small></td>
+                    {% endif %}
+
+                    
+
+                    
+                   
+                   
+ 
+                  
+                    
+                </tr>
+                {%endfor %}
+            </tbody>
+            
+           
+        </table>
+        
+        
+          
+      
+
+
+        
+         
+    </div>
+
+     
+
+</div>
+
+<!--modal-->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
